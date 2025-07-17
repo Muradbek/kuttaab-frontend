@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'ng-mf-nx-welcome',
+  selector: 'app-nx-welcome',
   imports: [CommonModule],
   template: `
     <!--
@@ -432,7 +432,7 @@ import { CommonModule } from '@angular/common';
         <div id="welcome">
           <h1>
             <span> Hello there, </span>
-            Welcome kuttaab 👋
+            Welcome remote 👋
           </h1>
         </div>
         <!--  HERO  -->
@@ -794,7 +794,7 @@ nx run-many -t build test lint</pre>
               </svg>
               View project details
             </summary>
-            <pre>nx show project kuttaab</pre>
+            <pre>nx show project remote</pre>
           </details>
 
           <details>
