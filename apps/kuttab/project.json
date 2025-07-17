@@ -1,30 +1,30 @@
 {
-  "name": "kuttaab",
+  "name": "remote",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "ng-mf",
-  "sourceRoot": "apps/kuttaab/src",
+  "prefix": "app",
+  "sourceRoot": "apps/kuttab/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/kuttaab",
-        "index": "apps/kuttaab/src/index.html",
-        "main": "apps/kuttaab/src/main.ts",
+        "outputPath": "dist/apps/kuttab",
+        "index": "apps/kuttab/src/index.html",
+        "main": "apps/kuttab/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/kuttaab/tsconfig.app.json",
+        "tsConfig": "apps/kuttab/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/kuttaab/public"
+            "input": "apps/kuttab/public"
           }
         ],
-        "styles": ["apps/kuttaab/src/styles.scss"],
+        "styles": ["apps/kuttab/src/styles.scss"],
         "customWebpackConfig": {
-          "path": "apps/kuttaab/webpack.config.ts"
+          "path": "apps/kuttab/webpack.config.ts"
         }
       },
       "configurations": {
@@ -43,7 +43,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/kuttaab/webpack.prod.config.ts"
+            "path": "apps/kuttab/webpack.prod.config.ts"
           }
         },
         "development": {
@@ -59,25 +59,26 @@
     },
     "serve": {
       "continuous": true,
-      "executor": "@nx/angular:module-federation-dev-server",
+      "executor": "@nx/angular:dev-server",
       "options": {
-        "port": 4200,
-        "publicHost": "http://localhost:4200"
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
       },
       "configurations": {
         "production": {
-          "buildTarget": "kuttaab:build:production"
+          "buildTarget": "remote:build:production"
         },
         "development": {
-          "buildTarget": "kuttaab:build:development"
+          "buildTarget": "remote:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "dependsOn": ["kuttaab:serve"]
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "kuttaab:build"
+        "buildTarget": "remote:build"
       }
     },
     "lint": {
@@ -87,16 +88,25 @@
       "executor": "@nx/vite:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/apps/kuttaab"
+        "reportsDirectory": "../../coverage/apps/kuttab"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "kuttaab:build",
-        "port": 4200,
-        "spa": true
+        "buildTarget": "remote:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "remote:build:development"
+        },
+        "production": {
+          "buildTarget": "remote:build:production"
+        }
       }
     }
   }

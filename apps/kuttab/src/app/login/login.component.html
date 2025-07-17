@@ -1,0 +1,51 @@
+<div class="login-form cs-ds-2">
+  <div class="login-form_wrapper">
+    <div class="login-form_image-container"></div>
+    <div>
+      <div>
+        <h1 class="mat-h1"></h1>
+      </div>
+      <form
+        id="loginForm"
+        autocomplete="off"
+        class="login-form_form"
+        [formGroup]="loginForm"
+        (ngSubmit)="signIn.emit({ credentials: loginForm.value })"
+      >
+        <input
+          #username
+          matInput
+          name="username"
+          placeholder="Введите логин"
+          formControlName="user_name"
+          autocomplete="off"
+        />
+
+          <input
+            matInput
+            name="password"
+            placeholder="Введите пароль"
+            formControlName="password"
+            autocomplete="off"
+            [type]="passwordVisible ? 'text' : 'password'"
+          />
+          <button
+            type="button"
+            (click)="togglePasswordVisible()"
+          >
+          </button>
+        <div class="login-form_actions">
+          <button
+            color="accent"
+            type="submit"
+            form="loginForm"
+            [disabled]="pending"
+            (click)="onLogin()"
+          >
+            Войти
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

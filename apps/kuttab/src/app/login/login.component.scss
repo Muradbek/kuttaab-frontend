@@ -1,0 +1,91 @@
+$login-form-width: 550px;
+
+:host {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  overflow: auto;
+
+  background-size: cover;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+
+  .login-form {
+    box-sizing: border-box;
+    padding: 40px 20px;
+    width: 100vw;
+    max-width: $login-form-width;
+    height: 725px;
+    max-height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: #ffffff; // todo: sa_yarovitsyn move to themes
+    box-shadow: 10px 0px 40px rgba(35, 42, 67, 0.08);
+    border-radius: 30px 0px 0px 30px;
+  }
+
+  .login-form_wrapper {
+    margin: auto;
+    width: 100%;
+    max-width: 390px;
+  }
+
+  .login-form_form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (width <=$login-form-width) {
+    .login-form {
+      border-radius: 0;
+    }
+  }
+
+  .login-form_image-container {
+    height: 80px;
+    margin-bottom: 70px;
+
+    > img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .mat-body-1 {
+    margin-bottom: 8px;
+  }
+  .login-form_module-name {
+    margin-bottom: 24px;
+  }
+  .mat-headline-1 {
+    margin-bottom: 40px;
+  }
+
+  .login-form_form > .mat-form-field {
+    margin-bottom: 24px;
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: background-color 5000s;
+      -webkit-text-fill-color: inherit;
+    }
+  }
+
+  .login-form_actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    & > button {
+      width: 120px;
+    }
+  }
+}
